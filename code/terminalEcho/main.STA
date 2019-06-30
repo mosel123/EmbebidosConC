@@ -1,0 +1,60 @@
+
+ROM used:   702/65536 (1%)
+            702/65536 (1%) including unused fragments
+
+            0.3 Average locations per line
+            1.9 Average locations per statement
+
+RAM used:   33/3968 (1%) at main() level
+            38/3968 (1%) worst case
+
+Stack used: 3 worst case (2 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   58    16   4  main.c
+  834     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\18f4620.h
+   37     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h
+  423     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
+   32     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
+   28     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+ 1351   359  96  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+----- -----
+ 2763   375 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     16   1    0    42  1.4  isr_rda
+0    192  14    3   351  4.1  MAIN
+0     24   2    0             @const922
+0     34   2    2             @PSTRINGC_9600_31766_31767
+0      4   0    0             @const924
+0     36   3    0             @const925
+0     32   2    3             @PSTRINGCN_9600_31766_31767
+0     40   3    3             @DIV88
+0    110   8    2             @PRINTF_U_9600_31766_31767
+0     68   5    2             @PRINTF_X_9600_31766_31767
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               2
+    Statements              375
+    Comments                693
+    Volume (V)              458
+    Difficulty (D)          4.6
+    Effort to implement (E) 2129
+    Time to implement (T)   2 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    31
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00094   142  0  
+00096-0FFFE   556  64830  
+
+
+

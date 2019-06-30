@@ -1,0 +1,62 @@
+
+ROM used:   2782/65536 (4%)
+            2782/65536 (4%) including unused fragments
+
+            1.0 Average locations per line
+            6.3 Average locations per statement
+
+RAM used:   71/3968 (2%) at main() level
+            114/3968 (3%) worst case
+
+Stack used: 3 worst case (2 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  185    84  19  mailLed.c
+  834     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4620.h
+   37     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h
+  423     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
+   32     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
+   28     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+ 1351   359  81  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+----- -----
+ 2890   443 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    242   4   11             @MULFF
+0     54   1    2             @ITOF
+0    618  11   16             @ADDFF
+0    348   6   14             @DIVFF
+0    564  10   19  1542 12.4  strtof
+0     42   1    1             @delay_ms1
+0     10   0    0             @PUTCHARI_BIU_1
+0     66   1    2   221  4.1  isr_rda
+0    578  10    2  2244  8.9  MAIN
+0     20   0    0             @const932
+0     36   1    2             @PSTRINGC_9600_31766_31767
+0     58   1    4             @SFTOI
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              443
+    Comments                707
+    Volume (V)              4795
+    Difficulty (D)          24.4
+    Effort to implement (E) 116908
+    Time to implement (T)   1 hours, 48 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   33
+    Maintainability (MI)    0
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00094   142  0  
+00096-0FFFE  2636  62750  
+
+
+

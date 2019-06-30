@@ -1,0 +1,27 @@
+[PROJECT]
+Target=pct2.hex
+Processor_Text=PIC18F4620
+CCSVersion=5.012
+Compiler=PCH
+[Target Data]
+FileList=pct2.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\;C:\Program Files (x86)\PICC\Drivers\C:\Program Files (x86)\PICC\Devices\
+[pct2.c]
+Type=4
+[mru-list]
+1=pct2.c
+[Opened Files]
+1=..\Practica 3\Practica 3 - Calculadora por puerto serial.c
+2=
+3=
+4=
+[Documentation]
+1=C:\Users\Usuario\Desktop\Practica 2\pct2 Notes.txt
+1T=pct2 Notes.txt
+1E=
+1W=0
+Count=1
+[Units]
+Count=1
+1=pct2 (main)

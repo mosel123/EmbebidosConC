@@ -1,0 +1,82 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     opcion
+005-006 main.resultado
+007     main.operacion
+008     evalua.opcion
+008     errorSecuencia.i
+008     main.@SCRATCH1
+009     @delay_ms1.P1
+009     main.@SCRATCH2
+009     evalua.@SCRATCH1
+00A     main.@SCRATCH3
+00B     main.@SCRATCH4
+00C-00D @MUL1616.P1
+00C-00D @DIV1616.P2
+00E-00F @MUL1616.P1
+00E-00F @DIV1616.P2
+010     @MUL1616.@SCRATCH1
+010     @DIV1616.@SCRATCH1
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  evalua
+000032  @MUL1616
+000052  @delay_ms1
+00007A  errorSecuencia
+0000A2  @DIV1616
+0000E6  main
+0000E6  @cinit1
+0000F8  @cinit2
+000216  @goto10603
+
+Project Directory:
+    C:\Users\Usuario\Desktop\Practica 2\
+
+Project Files:
+    pct2.c                                                  [03-abr.-19 15:36  CRC=DA970C61]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\18F4620.h  [10-sep.-13 16:34  CRC=044A57BA]
+
+Source signature=E32BBBD5
+
+Units:
+    pct2 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4620
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   pct2.xsym
+    Errors:      pct2.err
+    Ext Symbols: pct2.esym
+    INHX32:      pct2.hex
+    Symbols:     pct2.sym
+    List:        pct2.lst
+    Debug/COFF:  pct2.cof
+    Project:     pct2.ccspjt
+    Call Tree:   pct2.tre
+    Statistics:  pct2.STA

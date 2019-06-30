@@ -1,0 +1,37 @@
+#include <18f4620.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOPBADEN, NOMCLR, STVREN, NOLVP, NODEBUG, XT
+#use delay(clock=16000000)
+
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#use fast_io(d)
+#use fast_io(e)
+
+void main(void)
+{
+   set_tris_a(0x00);
+   set_tris_b(0x00);
+   set_tris_c(0x00);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   
+   setup_timer_0(rtcc_internal | rtcc_div_8);
+   set_timer0(15536);
+    
+   enable_interrupts(int_timer0);
+   enable_interrupts(global);  
+   
+   while(TRUE)
+   {  
+      for(int i=128; i>=1; i/=2)
+      {
+            output_c(i);
+            delay_ms(500);
+      }
+   }
+}

@@ -1,0 +1,160 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 strtok.save
+018-01B _Randseed
+01C     bandera
+01C.0   flagSerial
+01D.0   flagEnter
+01D     banderaEnter
+01E     banderaEcho
+01E.0   flagEcho
+01F-03C buffRx
+03D-040 entero
+041     indexBff
+042-043 sumaDatos
+044.0   banderaA
+044.1   banderaB
+044.2   banderaD
+045-046 MAIN.contadorA
+047-048 MAIN.contadorB
+049-04A MAIN.contadorD
+04B     MAIN.indexWalk
+04C     MAIN.indexSuma
+04D-04E strtof.s
+04D     @delay_ms1.P1
+04D-050 @SFTOI.P2
+04D     MAIN.@SCRATCH1
+04D     @PSTRINGC_9600_31766_31767.@SCRATCH1
+04E     MAIN.@SCRATCH2
+04E     @PSTRINGC_9600_31766_31767.@SCRATCH2
+04F-050 strtof.endptr
+051-054 strtof.pow10
+055-058 strtof.result
+059.0   strtof.skip
+059.1   strtof.sign
+059.2   strtof.point
+05A     strtof.c
+05B     strtof.ptr
+05C-05F @MULFF.P1
+05C     strtof.@SCRATCH1
+05D     strtof.@SCRATCH2
+05E     strtof.@SCRATCH3
+05F     strtof.@SCRATCH4
+060-063 @DIVFF.P1
+060-061 @ITOF.P2
+060-063 @ADDFF.P3
+060-063 @MULFF.P4
+064-067 @DIVFF.P1
+064-067 @ADDFF.P2
+064     @MULFF.@SCRATCH1
+065     @MULFF.@SCRATCH2
+066     @MULFF.@SCRATCH3
+068     @ADDFF.@SCRATCH1
+068     @DIVFF.@SCRATCH1
+069     @ADDFF.@SCRATCH2
+069     @DIVFF.@SCRATCH2
+06A     @ADDFF.@SCRATCH3
+06A     @DIVFF.@SCRATCH3
+06B     @ADDFF.@SCRATCH4
+06B     @DIVFF.@SCRATCH4
+06C     @ADDFF.@SCRATCH5
+06C     @DIVFF.@SCRATCH5
+06D     @ADDFF.@SCRATCH6
+06D     @DIVFF.@SCRATCH6
+06E     @ADDFF.@SCRATCH7
+06F     @ADDFF.@SCRATCH8
+070     isr_rda.@SCRATCH1
+071     isr_rda.@SCRATCH2
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  isr_rda
+0000D8  @const932.call
+0000EC  @PSTRINGC_9600_31766_31767
+000110  @PUTCHARI_BIU_1
+00011A  @MULFF
+00020C  @ITOF
+000242  @DIVFF
+00039E  @ADDFF
+000608  strtof
+00083C  @SFTOI
+000876  @delay_ms1
+0008A0  MAIN
+0008A0  @cinit1
+0008D0  @cinit2
+0136  StrtoulGO
+0136  StrtolGO
+
+Project Directory:
+    C:\Users\Usuario\Desktop\Asesoria\terminalLeds\
+
+Project Files:
+    mailLed.c                                               [27-jun.-19 20:30  CRC=A87C1C93]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4620.h [10-sep.-13 17:34  CRC=044A57BA]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h [31-jul.-07 14:24  CRC=4E4534F4]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h [14-jul.-11 11:13  CRC=23EDEC8F]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [16-jul.-10 10:27  CRC=897CEC6C]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h [03-ene.-08 14:55  CRC=2D1F019F]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h [08-jun.-11 15:39  CRC=0B6669CF]
+
+Source signature=EC625779
+
+Units:
+    mailLed (main)
+
+Compiler Settings:
+    Processor:      PIC18F4620
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   mailLed.xsym
+    Errors:      mailLed.err
+    Ext Symbols: mailLed.esym
+    INHX32:      mailLed.hex
+    Symbols:     mailLed.sym
+    List:        mailLed.lst
+    Debug/COFF:  mailLed.cof
+    Project:     mailLed.ccspjt
+    Call Tree:   mailLed.tre
+    Statistics:  mailLed.STA

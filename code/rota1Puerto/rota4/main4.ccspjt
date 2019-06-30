@@ -1,0 +1,21 @@
+[PROJECT]
+Target=main4.hex
+Processor_Text=PIC18F4620
+CCSVersion=5.012
+Compiler=PCH
+[Target Data]
+FileList=main4.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[main4.c]
+Type=4
+[mru-list]
+1=main4.c
+[Opened Files]
+1=main4.c
+2=..\rota2\main2.c
+3=..\rota1\main1.c
+4=
+[Units]
+Count=1
+1=main4 (main)

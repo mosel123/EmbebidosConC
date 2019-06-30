@@ -1,0 +1,87 @@
+#include <18f4620.h>
+#use delay(clock=16000000)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOPBADEN, NOMCLR, STVREN, NOLVP, NODEBUG, XT
+
+#define puertoB 0x01
+#define puertoC 0x02
+#define puertoD 0x03
+
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#use fast_io(d)
+#use fast_io(e)
+
+long contador = 1;
+
+void main(void)
+{
+   set_tris_a(0x3F);
+   set_tris_b(0x00);
+   set_tris_c(0x00);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   
+   long puertoA = 0;
+   long secuencia=0;
+   
+   while(TRUE)
+   {
+      puertoA = input_A();
+      if((puertoA & 0x01) == 0x01 || (puertoA & 0x08) == 0x08)
+      {
+         contador=1;
+         secuencia = puertoC;
+      }
+      else if((puertoA & 0x02) == 0x02 || (puertoA & 0x10) == 0x10)
+      {
+         contador=128;
+         secuencia = puertoC;
+      }
+      else if((puertoA & 0x04) == 0x04 || (puertoA & 0x20) == 0x20)
+      {
+         contador=1;
+         secuencia = puertoD;
+      } 
+      
+      switch(secuencia)
+      {
+         case puertoB: 
+            output_b(contador);
+            delay_ms(100);
+            contador = contador >> 1;
+            if(contador == 128)
+            {
+               contador = 1;
+            }
+            secuencia = 0x00;
+            break;
+         case puertoC:
+            output_c(contador);
+            delay_ms(100);
+            contador = contador >> 1;
+            if(contador == 0)
+            {
+               contador = 128;
+            }
+            secuencia = 0x00;
+            break;
+         case puertoD:
+            output_d(contador);
+            delay_ms(100);
+            contador = contador >> 2;
+            if(contador == 128)
+            {
+               contador = 1;
+            }
+            secuencia = 0x00;
+            break;
+      }
+      
+   }
+}

@@ -1,0 +1,156 @@
+//Interrupciones timer0 (Secuencias en anillo)//
+#include <18F4620.h>
+#use delay(clock=16000000)
+
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOMCLR, STVREN, NOLVP, NODEBUG, NOPBADEN
+
+#define sec1 0x02
+#define sec2 0x04
+#define sec3 0x07
+#define sec4 0x0A
+
+#use fast_io (a)
+#use fast_io (b)
+#use fast_io (c)
+#use fast_io (d)
+
+int contador1 = 0;
+int contador2 = 0;
+int contador3 = 0;
+int contador4 = 0;
+int opcion = 0;
+
+int evaluaFuncion(int opcion, int contador1, int contador2, int contador3, int contador4);
+void limpiaVariables(int contador1, int contador2, int contador3, int contador4);
+void secuencia1(void);
+void secuencia2(void);
+void secuencia3(void);
+void secuencia4(void);
+
+#int_timer0
+void timer_0()
+{
+   set_timer0(15536);
+   
+   contador1++;
+   contador2++;
+   contador3++;
+   contador4++;
+}
+
+void main()
+{
+    setup_oscillator(OSC_16MHZ);
+    
+    setup_timer_0(rtcc_internal | rtcc_div_64);
+    set_timer0(15536);
+    
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+   
+    set_tris_a(0xC0);
+    set_tris_b(0x00);
+    set_tris_c(0x00);
+    set_tris_d(0x00);
+    set_tris_e(0x00);
+    
+    while(TRUE)
+    { 
+      int operacion = evaluaFuncion(opcion,contador1,contador2,contador3,contador4);
+      
+      switch(operacion)
+      {
+         case sec1:
+            secuencia1();
+            break;
+         case sec2:
+            secuencia2();
+            break;
+         case sec3:
+            secuencia3();
+            break;
+         case sec4:
+            secuencia4();
+            break;
+      }
+    }
+}
+
+int evaluaFuncion(int opcion, int contador1, int contador2, int contador3, int contador4)
+{  
+   if(contador1 == 2)
+   {
+      opcion = sec1;
+   }
+   if(contador2 == 4)
+   {
+      opcion = sec2;
+   }   
+   if(contador3 == 7)
+   {
+      opcion = sec3;
+   }         
+   if(contador4 == 10)
+   {
+      opcion = sec4;
+   }
+      
+   return opcion; 
+}
+
+void limpiaVariables(int contador1, int contador2, int contador3, int contador4)
+{
+   if(contador4 == 11)
+   {
+      contador4 = 0;
+   }
+   if(contador3 == 8)
+   {
+      contador3 = 0;
+   }
+   if(contador2 == 5)
+   {
+      contador2 = 0;
+   }
+   if(contador1 == 3)
+   {
+      contador1 = 0;
+   }
+}
+
+void secuencia1(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_a(i);
+      delay_ms(500);
+   }
+}
+
+void secuencia2(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_c(i);
+      delay_ms(500);
+   }
+}
+
+void secuencia3(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_d(i);
+      delay_ms(500);
+   }
+}
+
+void secuencia4(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_b(i);
+      delay_ms(500);
+   }
+}

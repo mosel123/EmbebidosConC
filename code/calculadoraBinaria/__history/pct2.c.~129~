@@ -1,0 +1,95 @@
+//Examen primera parcial//
+#include <18F4620.h>
+#use delay(clock=4000000)
+
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT, NOPBADEN, NOMCLR, STVREN, NOLVP, NODEBUG
+
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#use fast_io(d)
+#use fast_io(e)
+
+#define opNada 0x01
+#define opContMSB 0x02
+#define opContLSB 0X03
+#define opInNum 0X04
+
+void contadorMSb_LSB();
+void contadorLSB_MSB();
+void shineRepet(int suma);
+
+void main (void)
+{
+   int8 opcion;
+   int suma=0;
+   
+   Set_tris_b(0x00);
+   Set_tris_d(0x00);
+   
+   while(TRUE)
+   {
+      if(input(PIN_C0) == TRUE && input(PIN_C1) == TRUE)
+      {
+         opcion = opNada;
+      }
+      else if (input(PIN_C0) == TRUE && input(PIN_C1) == FALSE)
+      {
+         opcion = opContMSB;
+      }
+      else if (input(PIN_C0) == FALSE && input(PIN_C1) == TRUE)
+      {
+         opcion = opContLSB;
+      } 
+      else if (input(PIN_C0) == FALSE && input(PIN_C1) == FALSE)
+      {
+         opcion = opInNum;
+      }
+      
+      switch(opcion)
+      {
+         case opNada:
+            opcion = 0x00;
+            break;
+         case opContMSB:
+            contadorMSb_LSB();
+            opcion = 0x00;
+            break; 
+         case opContLSB: 
+            contadorLSB_MSB();
+            opcion = 0x00;
+            break;
+         case opInNum: 
+            shineRepet(suma);
+            opcion = 0x00;
+            break;
+       }
+   }
+}
+
+void contadorMSb_LSB()
+{
+   for(int i=255; i>=1; i/=2)
+   {
+      output_d(i);
+      output_b(i>>8);
+      delay_ms(200);
+   }
+}
+
+void contadorLSB_MSB()
+{
+   for(int i=1; i>=255; i++)
+   {
+      output_b(i);
+      output_d(i>>8);
+      delay_ms(200);
+   }
+}
+
+void shineRepet(int suma)
+{
+   suma = input(PIN_C0) + input(PIN_C1) + input(PIN_C2) + input(PIN_C3) + input(PIN_C4) + input(PIN_C5) + input(PIN_C6) + input(PIN_C7);
+   output_b(suma);
+   output_d(suma>>8);
+}

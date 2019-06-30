@@ -1,0 +1,126 @@
+//Interrupciones timer0 (Secuencias en anillo)//
+#include <18F4620.h>
+#use delay(clock=16000000)
+
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOMCLR, STVREN, NOLVP, NODEBUG, NOPBADEN
+
+#define sec1 0x02
+#define sec2 0x04
+#define sec3 0x07
+#define sec4 0xA0
+
+#use fast_io (a)
+#use fast_io (b)
+#use fast_io (c)
+#use fast_io (d)
+
+int contador = 0;
+int opcion = 0;
+
+int evaluaFuncion(int opcion);
+void secuencia1(void);
+void secuencia2(void);
+void secuencia3(void);
+void secuencia4(void);
+
+#int_timer0
+void timer_0()
+{
+   set_timer0(6224);
+   contador++;
+}
+
+void main()
+{
+    setup_oscillator(OSC_16MHZ);
+    
+    setup_timer_0(rtcc_internal | rtcc_div_64 | RTCC_8_BIT);
+    set_timer0(6224);
+    
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+   
+    set_tris_a(0xC0);
+    set_tris_b(0x00);
+    set_tris_c(0x00);
+    set_tris_d(0x00);
+    set_tris_e(0x00);
+    
+    while(TRUE)
+    {
+      if(contador == 11)
+      {
+         contador = 0;
+      }
+      
+      int operacion = evaluaFuncion(opcion);
+      
+      switch(operacion)
+      {
+         case sec1:
+            secuencia1();
+            break;
+         case sec2:
+            secuencia2();
+            break;
+         case sec3:
+            secuencia3();
+            break;
+         case sec4:
+            secuencia4();
+            break;
+      }
+    }
+}
+
+int evaluaFuncion(int opcion)
+{  
+   int evalua = contador;
+   if(evalua == 2)
+      opcion = sec1;
+   else if(evalua == 4)
+      opcion = sec2;
+   else if(evalua == 7)
+      opcion = sec3;
+   else if(evalua == 10)
+      opcion = sec4;
+      
+   return opcion; 
+}
+
+void secuencia1(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_a(i);
+      delay_ms(500);
+   }
+}
+
+void secuencia2(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_c(i);
+      delay_ms(500);
+   }
+}
+
+void secuencia3(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_d(i);
+      delay_ms(500);
+   }
+}
+
+void secuencia4(void)
+{
+   for(int i=128; i>=1; i/=2)
+   {
+      output_b(i);
+      delay_ms(500);
+   }
+}

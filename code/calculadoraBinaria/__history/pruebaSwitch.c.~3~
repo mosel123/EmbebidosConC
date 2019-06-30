@@ -1,0 +1,52 @@
+
+
+//Calculadora básica de 8x8//
+#include <18F4620.h>
+#use delay(clock = 4M)
+#use fast_io(b)
+#use fast_io(a)
+#use fast_io(e)
+#fuses NOWDT, PUT, NODEBUG, NOBROWNOUT, NOPROTECT, NOWRT, NOMCLR
+#include <stdio.h>
+
+#byte PORTB=0x81
+#byte PORTA=0x80
+
+void sumaBin(int num1, int num2, int result);
+void valoresVariables(int num1, int num2);
+
+void main()
+{
+   Set_tris_a(0xc0);
+   Set_tris_b(0xff);
+   Set_tris_c(0x00);
+   Set_tris_d(0xff);
+   Set_tris_e(0xff);
+   
+   int1 state;
+   int num1=0, num2=0;
+   int result;
+   
+   while(TRUE)
+   {
+      valoresVariables(num1,num2);
+      if(!input(pin_e3))
+         sumaBin(num1,num2,result);
+   }
+}
+
+void valoresVariables(int num1, int num2)
+{   
+   while(true)
+   {
+      if(!input(portB))
+      {
+         num1=portb;
+      } 
+   }
+}   
+
+void sumaBin(int num1, int num2, int result)
+{
+   result=0;
+}

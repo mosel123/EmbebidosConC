@@ -1,0 +1,84 @@
+//Interrupciones timer0 (Secuencias en anillo)//
+#include <18F4620.h>
+#use delay(clock=16000000)
+
+#fuses HS, NOFCMEN, NOIESO, PUT, NOBROWNOUT, NOWDT
+#fuses NOMCLR, STVREN, NOLVP, NODEBUG, NOPBADEN
+
+#use fast_io (a)
+#use fast_io (b)
+#use fast_io (c)
+#use fast_io (d)
+
+int contador1 = 0;
+int contador2 = 0;
+int contador3 = 0;
+int contador4 = 0;
+
+#int_timer0
+void timer_0()
+{
+   set_timer0(15536);
+   
+   contador1++;
+   contador2++;
+   contador3++;
+   contador4++;
+}
+
+void main()
+{
+    setup_oscillator(OSC_16MHZ);
+    
+    setup_timer_0(rtcc_internal | rtcc_div_8);
+    set_timer0(15536);
+    
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+   
+    set_tris_a(0xC0);
+    set_tris_b(0x00);
+    set_tris_c(0x00);
+    set_tris_d(0x00);
+    set_tris_e(0x00);
+    
+    while(TRUE)
+    { 
+        if(contador1 == 2)
+        {
+            for(int i=128; i>=1; i/=2)
+            {
+               output_a(i);
+               delay_ms(100);
+            }
+            contador1 = 0;
+        }
+        if(contador2 == 4)
+        {
+            for(int i=128; i>=1; i/=2)
+            {
+               output_c(i);
+               delay_ms(100);
+            }
+            contador2 = 0;
+        }   
+        if(contador3 == 7)
+        {
+            for(int i=128; i>=1; i/=2)
+            {
+               output_d(i);
+               delay_ms(100);
+            }
+            contador3 = 0;
+        }         
+        if(contador4 == 10)
+        {
+            for(int i=128; i>=1; i/=2)
+            {
+               output_b(i);
+               delay_ms(100);
+            }
+            contador4 = 0;
+        } 
+    }
+}

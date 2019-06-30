@@ -1,0 +1,99 @@
+//Interrupciones timer0 (Secuencias en anillo)//
+#include <18F4620.h>
+#use delay (clock=16000000)
+
+#fuses XT, NOMCLR
+
+#use fast_io (a)
+#use fast_io (b)
+#use fast_io (c)
+#use fast_io (d)
+
+int contador1 = 0;
+int contador2 = 0;
+int contador3 = 0;
+int contador4 = 0;
+
+int secuencia1 = 64;
+int secuencia2 = 256;
+int secuencia3 = 256;
+int secuencia4 = 256;
+
+#int_timer0
+void timer_0()
+{
+   set_timer0(15536);
+   
+   contador1++;
+   contador2++;
+   contador3++;
+   contador4++;
+}
+
+void main()
+{
+    setup_oscillator(OSC_16MHZ);
+    
+    setup_timer_0(rtcc_internal | rtcc_div_8);
+    set_timer0(15536);
+    
+    enable_interrupts(int_timer0);
+    enable_interrupts(global);
+   
+    set_tris_a(0x00);
+    set_tris_b(0x00);
+    set_tris_c(0x00);
+    set_tris_d(0x00);
+    set_tris_e(0x00);
+    
+    while(TRUE)
+    { 
+    //Secuencia de 200ms
+        if(contador1 == 2)
+        {
+            secuencia1 /= 2;
+            if(secuencia1 == 2)
+            {
+                secuencia1 = 64;   
+            }
+            contador1 = 0;
+        }
+        output_a(secuencia1);
+        
+    //Secuencia de 400ms
+        if(contador2 == 4)
+        {
+            secuencia2 /= 2;
+            if(secuencia2 == 2)
+            {
+                secuencia2 = 256;   
+            }
+            contador2 = 0;
+        }
+        output_c(secuencia2);
+        
+    //Secuencia de 700ms
+        if(contador3 == 7)
+        {
+            secuencia3 /= 2;
+            if(secuencia3 == 2)
+            {
+                secuencia3 = 256;   
+            }
+            contador3 = 0;
+        }
+        output_d(secuencia3);  
+        
+    //Secuencia de 1000ms
+        if(contador4 == 10)
+        {
+            secuencia4 /= 2;
+            if(secuencia4 == 2)
+            {
+                secuencia4 = 256;   
+            }
+            contador4 = 0;
+        }
+        output_c(secuencia4);
+    }
+}
